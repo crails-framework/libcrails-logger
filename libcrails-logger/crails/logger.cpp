@@ -76,9 +76,8 @@ void Logger::flush()
   time_stream << '[' << setw(2) << t.tm_mday << '/' << setw(2) << (t.tm_mon + 1) << ' ';
   time_stream << setw(2) << t.tm_hour << ':' << setw(2) << t.tm_min << ':' << setw(2) << t.tm_sec << "] ";
   buffer.stream.seekg(0, ios::end);
-  if (buffer.stream.tellg() > 0)
+  if (buffer.stream.tellg() > 0 && mutex.try_lock())
   {
-    mutex.lock();
     switch (buffer.level)
     {
       case Info:
