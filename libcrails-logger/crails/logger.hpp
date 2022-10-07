@@ -7,8 +7,11 @@
 
 namespace Crails
 {
+  class LogRotate;
+
   class Logger
   {
+    friend class LogRotate;
   public:
     enum Symbol
     {
