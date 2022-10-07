@@ -12,6 +12,18 @@ namespace Crails
   class Logger
   {
     friend class LogRotate;
+
+    template<typename T, bool callable = std::is_invocable<T>::value>
+    struct Appender
+    {
+      static void append(std::ostream& stream, const T& value) { stream << value; }
+    };
+
+    template<typename T>
+    struct Appender<T, true>
+    {
+      static void append(std::ostream& stream, const T& value) { stream << value(); }
+    };
   public:
     enum Symbol
     {
@@ -41,7 +53,7 @@ namespace Crails
     Logger& operator<<(const T item)
     {
       if (log_level <= buffer.level)
-        buffer.stream << item;
+        Appender<T>::append(buffer.stream, item);
       return *this;
     }
 
