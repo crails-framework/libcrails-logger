@@ -1,4 +1,4 @@
-import libs = libboost-date-time%lib{boost_date_time}
+import intf_libs += libboost-date-time%lib{boost_date_time}
 
 lib{crails-logger}: {hxx ixx txx cxx}{**} $impl_libs $intf_libs
 
