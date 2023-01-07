@@ -60,8 +60,9 @@ namespace Crails
     void flush();
 
     unsigned char get_log_level() const { return log_level; }
+    void set_log_level(Symbol value) { log_level = value; }
   private:
-    static const Symbol log_level;
+    static Symbol log_level;
     static thread_local Buffer buffer;
     std::mutex    mutex;
     std::ostream* stdout;

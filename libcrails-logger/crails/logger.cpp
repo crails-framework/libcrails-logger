@@ -40,6 +40,7 @@ namespace Crails
 {
   Logger logger;
   thread_local Logger::Buffer Logger::buffer;
+  Logger::Symbol Logger::log_level = Logger::Debug;
 }
 
 Logger::Buffer::Buffer() : level(Logger::endl)
