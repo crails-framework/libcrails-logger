@@ -98,15 +98,17 @@ void LogRotate::load_log_files()
     event_log.open(event_filepath.c_str());
     if (event_log.is_open())
     {
+      logger << Logger::Debug << "logs redirected to `" << event_filepath << '`' << Logger::endl;
       logger.stdout = &event_log;
       if (error_filepath.length() == 0)
         logger.stderr = &event_log;
-  }
+    }
     else
       cerr << "failed to open log file `" << event_filepath << '`' << endl;
   }
   if (error_filepath.length() != 0)
   {
+    logger << Logger::Debug << "error logs redirected to `" << error_filepath << '`' << Logger::endl;
     error_log.open(error_filepath.c_str());
     if (error_log.is_open())
       logger.stderr = &error_log;
