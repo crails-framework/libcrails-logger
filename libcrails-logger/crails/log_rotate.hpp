@@ -21,7 +21,7 @@ namespace Crails
 
     std::ofstream event_log, error_log;
     std::string event_filepath, error_filepath;
-    unsigned short history_size;
+    unsigned short history_size = 10;
   };
 }
 

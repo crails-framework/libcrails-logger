@@ -56,14 +56,14 @@ Logger::Logger()
 void Logger::set_stderr(ostream& stream)
 {
   mutex.lock();
-  stdout = &stream;
+  stderr = &stream;
   mutex.unlock();
 }
 
 void Logger::set_stdout(ostream& stream)
 {
   mutex.lock();
-  stderr = &stream;
+  stdout = &stream;
   mutex.unlock();
 }
 
