@@ -1,8 +1,14 @@
 #include <crails/logger.hpp>
 #include <sstream>
+#include <functional>
 
 #undef NDEBUG
 #include <cassert>
+
+static std::string invokable_log(int value)
+{
+  return "invokable=" + std::to_string(value);
+}
 
 int main()
 {
@@ -75,6 +81,8 @@ int main()
     logger << Logger::Error << invokable << Logger::endl;
     assert(output.str().find("hello") != string::npos);
     assert(invoked == true);
+    logger << Logger::Info << std::bind(&invokable_log, 23) << Logger::endl;
+    assert(output.str().find("invokable=23") != string::npos);
   }
 
   return 0;
