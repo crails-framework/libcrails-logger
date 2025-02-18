@@ -49,21 +49,21 @@ Logger::Buffer::Buffer() : level(Logger::endl)
 
 Logger::Logger()
 {
-  stdout = &cout;
-  stderr = &cerr;
+  stdout_ = &cout;
+  stderr_ = &cerr;
 }
 
 void Logger::set_stderr(ostream& stream)
 {
   mutex.lock();
-  stderr = &stream;
+  stderr_ = &stream;
   mutex.unlock();
 }
 
 void Logger::set_stdout(ostream& stream)
 {
   mutex.lock();
-  stdout = &stream;
+  stdout_ = &stream;
   mutex.unlock();
 }
 
@@ -82,12 +82,12 @@ void Logger::flush()
     switch (buffer.level)
     {
       case Info:
-        *stdout log_prefix << time_stream.str() << buffer.stream.str();
-        stdout->flush();
+        *stdout_ log_prefix << time_stream.str() << buffer.stream.str();
+        stdout_->flush();
         break ;
       default:
-        *stderr log_prefix << time_stream.str() << buffer.stream.str();
-        stderr->flush();
+        *stderr_ log_prefix << time_stream.str() << buffer.stream.str();
+        stderr_->flush();
         break ;
     }
     mutex.unlock();

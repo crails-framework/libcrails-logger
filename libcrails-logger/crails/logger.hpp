@@ -65,8 +65,8 @@ namespace Crails
     static Symbol log_level;
     static thread_local Buffer buffer;
     std::mutex    mutex;
-    std::ostream* stdout;
-    std::ostream* stderr;
+    std::ostream* stdout_;
+    std::ostream* stderr_;
   };
 
   extern Logger logger;

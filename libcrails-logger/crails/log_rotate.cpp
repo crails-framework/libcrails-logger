@@ -99,9 +99,9 @@ void LogRotate::load_log_files()
     if (event_log.is_open())
     {
       logger << Logger::Debug << "logs redirected to `" << event_filepath << '`' << Logger::endl;
-      logger.stdout = &event_log;
+      logger.stdout_ = &event_log;
       if (error_filepath.length() == 0)
-        logger.stderr = &event_log;
+        logger.stderr_ = &event_log;
     }
     else
       cerr << "failed to open log file `" << event_filepath << '`' << endl;
@@ -111,7 +111,7 @@ void LogRotate::load_log_files()
     logger << Logger::Debug << "error logs redirected to `" << error_filepath << '`' << Logger::endl;
     error_log.open(error_filepath.c_str());
     if (error_log.is_open())
-      logger.stderr = &error_log;
+      logger.stderr_ = &error_log;
     else
       cerr << "failed to open log file `" << error_filepath << '`' << endl;
   }
