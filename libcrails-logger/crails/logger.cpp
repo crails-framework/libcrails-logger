@@ -5,6 +5,8 @@
 #include <boost/date_time/posix_time/conversion.hpp>
 #ifdef _WIN32
 # include <Windows.h>
+#endif
+#ifdef _MSC_VER
 typedef DWORD pid_t;
 #else
 # include <unistd.h>
