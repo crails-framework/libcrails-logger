@@ -47,6 +47,9 @@ namespace Crails
     void set_stdout(std::ostream& stream);
     void set_stderr(std::ostream& stream);
 
+    std::ostream& get_stdout() const { return *stdout_; }
+    std::ostream& get_stderr() const { return *stderr_; }
+
     Logger& operator<<(Symbol level);
 
     template<typename T>
